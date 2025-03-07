@@ -8,16 +8,17 @@ from app_models import destination as destination_models
 from app_models import vehicle as vehicle_models
 from app_models import rating as rating_models
 from app_models import passenger as passenger_models
-from app_models import start as start_models  # Add start_models to import
+from app_models import start as start_models  
 
+# import routers
 from routers import user as user_router
 from routers import booking as booking_router
 from routers import trip as trip_router
 from routers import destination as destination_router
-from routers import vehicle as vehicle_router  # Rename for clarity
+from routers import vehicle as vehicle_router  
 from routers import rating as rating_router
 from routers import passenger as passenger_router
-from routers import start as start_router  # Add start_router to import
+from routers import start as start_router  
 
 # Create database tables
 user_models.Base.metadata.create_all(bind=engine)
