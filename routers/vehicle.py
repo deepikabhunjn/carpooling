@@ -54,7 +54,7 @@ async def create_vehicle(
         vehicle_type=vehicle_type
     )
 
-    # Pass to our CRUD function
+    # Pass to CRUD function
     db_vehicle = vehicle_crud.create_vehicle(db, vehicle_data)
     return db_vehicle
 
