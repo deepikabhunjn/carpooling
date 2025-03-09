@@ -28,6 +28,7 @@ destination_models.Base.metadata.create_all(bind=engine)
 vehicle_models.Base.metadata.create_all(bind=engine)
 passenger_models.Base.metadata.create_all(bind=engine)
 start_models.Base.metadata.create_all(bind=engine)  # Create start table
+rating_models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -40,6 +41,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 app.include_router(vehicle_router.router, prefix="/vehicles", tags=["vehicles"])  # Vehicles router
 app.include_router(passenger_router.router, prefix="/passengers", tags=["passengers"])# Vehicle pricing router
 app.include_router(start_router.router, prefix="/starts", tags=["starts"])  # Include start router
+app.include_router(rating_router.router,prefix="/ratings", tags=["ratings"])
 
 
 @app.get("/")
