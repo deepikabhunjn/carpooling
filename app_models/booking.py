@@ -17,4 +17,3 @@ class RideBooking(Base):
     pickup_location = relationship("Start",foreign_keys=[pickup_location_id],)
     drop_location = relationship("Destination", foreign_keys=[drop_location_id])
 
-   
