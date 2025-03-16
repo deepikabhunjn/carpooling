@@ -1,7 +1,7 @@
 # carpooling backend
 
 Carpooling Backend
-The Carpooling Backend is a FastAPI-based project designed to support a carpooling service. It provides RESTful APIs for managing users, bookings, trips, vehicles, ratings, notifications, passengers, and other related entities. This backend serves as the foundation for carpooling applications, managing drivers, passengers, and their trips efficiently.
+The Carpooling Backend is a FastAPI-based project designed to support a carpooling service. It provides RESTful APIs for managing users, bookings, trips, vehicles, ratings, passengers, and other related entities. This backend serves as the foundation for carpooling applications, managing drivers, passengers, and their trips efficiently.
 
 Features
 User management (riders and drivers)
@@ -9,8 +9,7 @@ Trip creation and booking system
 Vehicle and driver registration
 Passenger tracking for each trip
 Rating system for trips and passengers
-Notifications system for users
-Profile update tracking
+
 Technologies
 Python 3.9+
 FastAPI - Web framework for creating APIs
