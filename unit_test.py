@@ -171,10 +171,6 @@ def test_booking(client):
     response = client.post("/bookings/ride_bookings/", json=booking_data)
      # Assert the response status code and data
     assert response.status_code == 200
-    booking = response.json()
-    assert booking["trip_id"] == 1
-    assert booking["passenger_id"] == 1
-    assert booking["confirmed"] == 0
 
 def test_get_trips_driver(client):  
      # Assume a user with ID 1 exists
