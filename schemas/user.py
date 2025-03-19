@@ -12,14 +12,6 @@ class UserCreate(UserBase):
     nic_number: Optional[str] = None
     license_number: Optional[str] = None
 
-class UserUpdate(BaseModel):
-    full_name: Optional[str] = None
-    password: Optional[str] = None
-    nic_number: Optional[str] = None
-    license_number: Optional[str] = None
-    # store the file path in the DB
-    profile_picture: Optional[str] = None # Optional field for updating profile picture
-
 class UserOut(BaseModel):
     id: int
     full_name: str
