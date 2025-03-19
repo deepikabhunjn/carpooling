@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+passlib
+bcrypt
+pandas
+numpy
+matplotlib
+seaborn
+torch
+transformers
+mysql-connector
+scikit-learn
+joblib
+pytest
+httpx
