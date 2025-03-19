@@ -19,7 +19,7 @@ from transformers import BartForSequenceClassification, BartTokenizer
 router = APIRouter()
 
 
-driver_model = joblib.load("./suggestion/driver_suggestion_model.pkl") # Load the Trained Model
+driver_model = joblib.load("./suggestion/driver_suggestion.pkl") # Load the Trained Model
 print("Driver suggestion model loaded.")
 
 # Load BART for Sentiment Analysis
@@ -41,7 +41,13 @@ def analyze_sentiment(text: str) -> float:
     # Optional extra penalty
     negative_keywords = ["poor", "bad", "subpar", "rude", "dirty", "late"]
     if any(word in text.lower() for word in negative_keywords):
-        base_score -= 0.2
+        base_score -= 0.7
+
+    # Apply bonus for positive keywords
+    positive_keywords = ["excellent", "good", "great", "friendly", "amazing", "smooth"]
+    if any(word in text.lower() for word in positive_keywords):
+        base_score += 0.7  # Adjust this bonus as needed
+
     return base_score
 
 @router.get("/suggestion/", response_model=List[trip_schemas.TripDetailOut])

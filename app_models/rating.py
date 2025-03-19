@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, String
 from sqlalchemy.orm import relationship
 from db import Base
 
+# give feedback upon completion of ride
 class Rating(Base):
     __tablename__ = "ratings"
 

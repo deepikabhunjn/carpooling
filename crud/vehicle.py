@@ -18,4 +18,3 @@ def get_vehicle(db: Session, vehicle_id: int):
 def get_vehicles_by_user(db: Session, user_id: int):
     return db.query(Vehicle).filter(Vehicle.user_id == user_id).all()
 
-

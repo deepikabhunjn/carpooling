@@ -20,7 +20,7 @@ def get_trip(db: Session, trip_id: int):
 def get_trips_by_driver(db: Session, user_id: int):
     return db.query(Trip).filter(Trip.user_id == user_id).all()
 
-# Get all trips with driver profile picture and vehicle details
+# Get all trips with user details and vehicle details
 def get_all_trips(db: Session):
     trips = (
         db.query(

@@ -2,7 +2,7 @@ from db import Base
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from datetime import datetime
 
-# creating users table in database defining the relationships, foreign key,primary key..
+# creating users table in database -- storing user details.
 class User(Base):
     __tablename__ = "users"
 

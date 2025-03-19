@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from db import Base
 from datetime import datetime
 
+# when a ride is  booked, a passenger is created, to call those details in the upcomming , ongoing part
 class Passenger(Base):
     __tablename__ = "passengers"
 

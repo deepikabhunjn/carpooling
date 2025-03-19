@@ -2,9 +2,10 @@ from sqlalchemy import Column, Integer, Float, String, DateTime, Boolean, Foreig
 from db import Base
 from datetime import datetime
 
-class Trip(Base):# creating the trips table storing details of the trips created by a user and vehicle used when trip s
+# creating the trips table storing details of the trips created by a user and vehicle used
+# foreign key to user id,vehicle id
+class Trip(Base):
     __tablename__ = "trips"
-
     id = Column(Integer, primary_key=True, index=True)
     pickup_location = Column(String(255), nullable=False)
     drop_location = Column(String(255), nullable=False)

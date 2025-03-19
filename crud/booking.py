@@ -27,12 +27,8 @@ def get_booking_id_by_trip_and_user(db: Session, trip_id: int, user_id: int):
 
     return booking
 
-def create_ride_booking(db: Session, ride_booking: RideBookingCreate):
-    # Validate that the passenger exists in the users table.
-    passenger = db.query(User).filter(User.id == ride_booking.passenger_id).first()
-    if not passenger:
-        raise Exception(f"Passenger ID {ride_booking.passenger_id} does not exist in users table.")
-    
+#create booking
+def create_ride_booking(db: Session, ride_booking: RideBookingCreate):    
     db_ride_booking = RideBooking(**ride_booking.dict())
     db.add(db_ride_booking)
     db.commit()

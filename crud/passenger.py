@@ -9,5 +9,4 @@ def create_passenger(db: Session, passenger: PassengerCreate):
     db.refresh(db_passenger)
     return db_passenger
 
-def get_passenger(db: Session, passenger_id: int):
-    return db.query(Passenger).filter(Passenger.id == passenger_id).first()
+

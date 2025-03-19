@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from db import Base
 
+# storing vehicle details with vehicle type, seat, image part optional - not working
 class Vehicle(Base):
     __tablename__ = "vehicles"
-
     id = Column(Integer, primary_key=True, index=True)
     make = Column(String(50), nullable=False)
     model = Column(String(50), nullable=False)

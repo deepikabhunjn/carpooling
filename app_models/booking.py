@@ -3,9 +3,10 @@ from sqlalchemy.orm import relationship
 from db import Base
 from datetime import datetime
 
+# when user books a ride, data is stored in this table with trip_id, passengerid being user id,pickup location id from start
+# destination id from destination, 
 class RideBooking(Base):
     __tablename__ = "ride_bookings"
-    
     id = Column(Integer, primary_key=True, index=True)
     trip_id = Column(Integer, ForeignKey("trips.id"), nullable=False)
     passenger_id = Column(Integer, ForeignKey("users.id"), nullable=False)

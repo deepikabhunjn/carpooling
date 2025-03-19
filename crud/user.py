@@ -1,7 +1,9 @@
 from sqlalchemy.orm import Session
 from app_models.user import User
-from schemas.user import UserCreate, UserUpdate
+from schemas.user import UserCreate
 from passlib.context import CryptContext
+
+#using bcrypt for hasing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Utility function to hash passwords
@@ -24,27 +26,6 @@ def create_user(db: Session, user: UserCreate):
         license_number=user.license_number
     )
     db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
-
-# Update user
-def update_user(db: Session, user_id: int, user_update: UserUpdate):
-    db_user = get_user(db, user_id)
-    if not db_user:
-        return None  
-
-    if user_update.full_name is not None:
-        db_user.full_name = user_update.full_name
-    if user_update.password is not None:
-        db_user.password = get_password_hash(user_update.password)
-    if user_update.nic_number is not None:
-        db_user.nic_number = user_update.nic_number
-    if user_update.license_number is not None:
-        db_user.license_number = user_update.license_number
-    if user_update.profile_picture is not None:
-        db_user.profile_picture = user_update.profile_picture
-
     db.commit()
     db.refresh(db_user)
     return db_user

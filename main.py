@@ -8,6 +8,8 @@ from app_models import vehicle as vehicle_models
 from app_models import rating as rating_models
 from app_models import passenger as passenger_models
 from app_models import start as start_models  
+from app_models import vehicle_pricing as pricing_models
+
 from fastapi.middleware.cors import CORSMiddleware
 # import routers
 from routers import user as user_router
@@ -18,6 +20,7 @@ from routers import vehicle as vehicle_router
 from routers import rating as rating_router
 from routers import passenger as passenger_router
 from routers import start as start_router  
+from routers import vehicle_pricing as pricing_router
 
 # Create database tables
 user_models.Base.metadata.create_all(bind=engine)
@@ -26,8 +29,9 @@ trip_models.Base.metadata.create_all(bind=engine)
 destination_models.Base.metadata.create_all(bind=engine)
 vehicle_models.Base.metadata.create_all(bind=engine)
 passenger_models.Base.metadata.create_all(bind=engine)
-start_models.Base.metadata.create_all(bind=engine)  # Create start table
+start_models.Base.metadata.create_all(bind=engine)  
 rating_models.Base.metadata.create_all(bind=engine)
+pricing_models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -47,7 +51,7 @@ app.include_router(vehicle_router.router, prefix="/vehicles", tags=["vehicles"])
 app.include_router(passenger_router.router, prefix="/passengers", tags=["passengers"])# Vehicle pricing router
 app.include_router(start_router.router, prefix="/starts", tags=["starts"])  # Include start router
 app.include_router(rating_router.router,prefix="/ratings", tags=["ratings"])
-
+app.include_router(pricing_router.router,prefix="/pricing", tags=["pricing"])  # Include vehicle
 
 
 @app.get("/")
