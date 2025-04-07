@@ -10,8 +10,9 @@ matplotlib
 seaborn
 torch
 transformers
-mysql-connector
+mysql-connector-python
 scikit-learn
 joblib
 pytest
 httpx
+python-multipart
