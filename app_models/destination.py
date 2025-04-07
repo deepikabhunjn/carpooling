@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float
 from db import Base
 
-#creating a destination table to store the drop off details of rider from google map api 
+#creating a destination table to store the drop off details of rider from google map  
 class Destination(Base):
     __tablename__ = "destinations"
     
@@ -9,3 +9,4 @@ class Destination(Base):
     location_name = Column(String(255), nullable=False)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
+    

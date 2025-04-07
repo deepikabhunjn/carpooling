@@ -28,7 +28,7 @@ def get_trip_bookings(trip_id: int, db: Session = Depends(get_db)):
 def create_ride_booking(ride_booking: RideBookingCreate, db: Session = Depends(get_db)):
     return ride_booking_crud.create_ride_booking(db, ride_booking)
 
-# update booking - cancel by ruder - confirmed - fakse
+# update booking - cancel by rider - confirmed - false
 @router.put("/ride_bookings/{booking_id}", response_model=RideBookingOut)
 def update_ride_booking( booking_id: int,booking_update: RideBookingUpdate, db: Session = Depends(get_db),):
     confirmed = booking_update.confirmed

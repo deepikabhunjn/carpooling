@@ -4,13 +4,13 @@ from crud import user as user_crud
 from schemas import user as user_schemas
 from db import get_db # import for database session
 from fastapi.security import OAuth2PasswordRequestForm
+from passlib.context import CryptContext
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 router = APIRouter()
 
 # Utility function to verify password
 def verify_password(plain_password: str, hashed_password: str):
-    from passlib.context import CryptContext
-    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
     return pwd_context.verify(plain_password, hashed_password)
 
 # Login route
@@ -21,25 +21,17 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
     if not user or not verify_password(form_data.password, user.password):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect email or password")
     # Return required user details
-    return {
-        "id": user.id,
-        "full_name": user.full_name,
-        "is_driver": user.is_driver
-    }
+    return {"id": user.id,"full_name": user.full_name,"is_driver": user.is_driver }
 
 # Register a new user
 @router.post("/users/", response_model=user_schemas.UserOut, status_code=status.HTTP_201_CREATED)
 def create_user(user: user_schemas.UserCreate, db: Session = Depends(get_db)):
     # Check if a user with this email already exists
     db_user = user_crud.get_user_by_email(db, email=user.email)
-    
     if db_user:
         # Check if the existing user is a driver or rider
         user_type = "Driver" if db_user.is_driver else "Rider"
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Email already registered with a {user_type} account."
-        )
+        raise HTTPException(  status_code=status.HTTP_400_BAD_REQUEST, detail=f"Email already registered with a {user_type} account." )
     # If email is not registered, create a new user
     return user_crud.create_user(db=db, user=user)
 

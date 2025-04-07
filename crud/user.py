@@ -3,7 +3,7 @@ from app_models.user import User
 from schemas.user import UserCreate
 from passlib.context import CryptContext
 
-#using bcrypt for hasing
+#using bcrypt for hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Utility function to hash passwords
@@ -17,14 +17,7 @@ def get_user_by_email(db: Session, email: str):
 # Create new user
 def create_user(db: Session, user: UserCreate):
     hashed_password = get_password_hash(user.password)
-    db_user = User(
-        full_name=user.full_name,
-        email=user.email,
-        password=hashed_password,
-        is_driver=user.is_driver,
-        nic_number=user.nic_number,
-        license_number=user.license_number
-    )
+    db_user = User( full_name=user.full_name,email=user.email,password=hashed_password, is_driver=user.is_driver, nic_number=user.nic_number,license_number=user.license_number)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

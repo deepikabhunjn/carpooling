@@ -12,6 +12,7 @@ class UserCreate(UserBase):
     nic_number: Optional[str] = None
     license_number: Optional[str] = None
 
+
 class UserOut(BaseModel):
     id: int
     full_name: str

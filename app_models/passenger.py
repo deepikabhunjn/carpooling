@@ -11,3 +11,7 @@ class Passenger(Base):
     trip_id = Column(Integer, ForeignKey("trips.id"), nullable=False)
     status = Column(String(20), default="Pending")  # Pending, Confirmed, Completed, Cancelled
     created_at = Column(DateTime, default=datetime.utcnow)
+
+
+
+    

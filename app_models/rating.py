@@ -12,3 +12,7 @@ class Rating(Base):
     driver_id = Column(Integer, ForeignKey("users.id"), nullable=True)  #  to store driver ratings
     rating = Column(Integer, nullable=False)
     feedback = Column(String(255), nullable=True)  # Optional feedback
+
+
+
+    

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float
 from db import Base
 
-#creating a start table to store the current location details of rider from google map api 
+#creating a start table to store the current location details of rider from google map  
 class Start(Base):
     __tablename__ = "start"
     

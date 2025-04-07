@@ -35,7 +35,7 @@ def create_ride_booking(db: Session, ride_booking: RideBookingCreate):
     db.refresh(db_ride_booking)
     return db_ride_booking
 
-# get all ride bookings associated with a specific trip_id
+# get all ride bookings with passenger,start,end associated with a specific trip_id
 def get_ride_bookings_by_trip(db: Session, trip_id: int):
     return db.query(RideBooking).options(
         joinedload(RideBooking.passenger),

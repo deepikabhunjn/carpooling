@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float
 from db import Base
 
-# price of car type depends - so for a ride created the price defers - calculation of fare
+# price of car type depends - so for a ride created the price defers 
 class VehiclePricing(Base):
     __tablename__ = "vehicle_pricings"
 

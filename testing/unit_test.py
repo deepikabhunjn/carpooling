@@ -13,7 +13,6 @@ def client():
     #Cleanup the database after tests are done
     Base.metadata.drop_all(bind=engine)
 
-
 # Fixture to get a testing database session
 @pytest.fixture(scope="module")
 def db():
@@ -30,29 +29,43 @@ def test_create_user(client, db):
         "password": "password123",
         "is_driver": False,
         "nic_number": "",
-        "license_number": ""
-    }
-    
+        "license_number": "" }
     # Send POST request to the "/users/" endpoint
     response = client.post("/users/users/", json=user_data)
-    
     # Assert response status code and content
     assert response.status_code == 201
     assert response.json()["email"] == user_data["email"]
+
+def test_create_user_invalid_data(client, db):
+    # Define the payload for creating a user with missing required fields
+    user_data = {
+        "email": "",  # Invalid email (empty)
+        "full_name": "Test User",
+        "password": "password123",
+        "is_driver": False,
+        "nic_number": "",
+        "license_number": ""
+    }
+    # Send POST request to the "/users/" endpoint
+    response = client.post("/users/users/", json=user_data)
+
+    # Assert response status code and content
+    assert response.status_code == 422  # Unprocessable Entity (Invalid Data)
+    assert "detail" in response.json()  # The error message 
+
 
 # Test case for login route
 def test_login_user(client, db):
     user_data = {
         "email": "testuser@example.com",
         "password": "password123"
-    }
-    
+    }   
     # Register the user first to test the login
     client.post("/users/users/", json=user_data)
     
     # Send POST request to login
     response = client.post("/users/login/", data={"username": user_data["email"], "password": user_data["password"]})
-    
+
     # Assert response status code and content
     assert response.status_code == 200
     assert "id" in response.json()
@@ -68,7 +81,7 @@ def test_read_user(client, db):
 
 
 # Sample Test Case for creating a vehicle without an image
-def test_create_vehicle_without_image(client):
+def test_create_vehicle(client):
     response = client.post(
         "/vehicles/vehicles/",
         json={
@@ -183,11 +196,12 @@ def test_get_trips_driver(client):
         assert "user_id" in trip
         assert trip["user_id"] == 1
 
+# Test update trip 
 def test_update_trip(client):
     trip_data = {
-        "is_completed": 1,
+        "is_completed": 0,
         "is_canceled": 0,
-        "status": "Pending"
+        "status": "Scheduled"
     }
     response = client.put("/trips/trips/1", json=trip_data)
     

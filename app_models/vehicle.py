@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from db import Base
 
-# storing vehicle details with vehicle type, seat, image part optional - not working
+# storing vehicle details with vehicle type, seat, image part optional
 class Vehicle(Base):
     __tablename__ = "vehicles"
     id = Column(Integer, primary_key=True, index=True)
@@ -11,4 +11,4 @@ class Vehicle(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     image_link = Column(String(255))  
     available_seat = Column(Integer, nullable=False)  #  available seats
-    vehicle_type = Column(String(50), nullable=False)  # vehicle type (e.g., SUV, Van)
+    vehicle_type = Column(String(50), nullable=False)  # vehicle type (e.g., Standard, Van)
